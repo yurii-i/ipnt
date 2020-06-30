@@ -35,9 +35,13 @@ module.exports = {
 		let data = {'status' : 'success'}
 		res.status(200).end(JSON.stringify(data));
 	},
-	completeTask : function (req, res) {
+	toggleCompleteTask : async function (req, res) {
 		let {userName, taskId} = req.body;
-		mongoWork.updateTask(taskId);
+		let taskData = await mongoWork.getTask(taskId);
+		console.log('toggleCompleteTask');
+		console.log(taskData);
+		// add validation
+		mongoWork.updateTask(taskId, {complete : !taskData.complete });
 		let data = {'status' : 'success'}
 		res.status(200).end(JSON.stringify(data));
 	},
