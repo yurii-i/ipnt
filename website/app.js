@@ -20,5 +20,5 @@ app.get('/tasks', routing.tasks);
 // recive post requests
 app.post('/get_tasks', routing.getTasks);
 app.post('/add_new_task', routing.addNewTask);
-app.post('/complete_task', routing.completeTask);
+app.post('/toggle_complete_task', routing.toggleCompleteTask);
 app.post('/remove_task', routing.removeTask);

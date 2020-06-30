@@ -29,7 +29,7 @@
 		<div class="row">
 			<div class="col-md-1">#</div>
 			<div class="col-md-9">tasks</div>
-			<div class="col-md-1">Complete</div>
+			<div class="col-md-1">Complete<p>Uncomplete</div>
 			<div class="col-md-1">Remove</div>
 		</div>
 		<hr>
@@ -106,7 +106,7 @@
 			let taskId = $(this).attr('task-id');
 			$.ajax({
 				type: "POST",
-				url: '/complete_task',
+				url: '/toggle_complete_task',
 				data: {
 					userName :  userName,
 					taskId : taskId

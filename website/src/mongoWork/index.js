@@ -25,9 +25,10 @@ module.exports = {
 		})
 
 	},
-	updateTask : function (taskId) {
-		Tasks.findByIdAndUpdate(taskId, { complete: true },function(err, author) {
+	updateTask : function (taskId, newData) {
+		Tasks.findByIdAndUpdate(taskId, newData,function(err, author) {
 			if (err) console.log(err);
+			return
 		});
 	},
 	removeTask : function (taskId) {
@@ -41,6 +42,15 @@ module.exports = {
 				console.log('find', userName);
 				if (err) console.log(err);
 				resolve(arr);
+			});
+		})
+	},
+	getTask : function (taskId) {
+		return new Promise((resolve) => {
+			Tasks.find({ _id: taskId }, function(err, arr) {
+				console.log('find', taskId);
+				if (err) console.log(err);
+				resolve(arr[0]);
 			});
 		})
 	}
