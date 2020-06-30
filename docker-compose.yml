@@ -1,0 +1,31 @@
+version: '3'
+services:
+  website:
+    image: "node:10.14.0"
+    container_name: "ipnote_todo_website"
+    volumes:
+      - ./website/:/app
+    working_dir: /app
+    depends_on:
+      - mongo
+    ports:
+      - 8081:8081
+    networks:
+      - ipnote_todo
+    command: 'npm start'
+    environment:
+      NODE_ENV: production
+      SERVICE_PORT: 8081
+    restart: always
+  mongo:
+    image: mongo:latest
+    container_name: "ip_note_todo_mongo"
+    volumes:
+      - ./mongo_bd/data:/data/db
+    networks:
+      - ipnote_todo
+    restart: always
+networks:
+  ipnote_todo:
+    external:
+      name: ipnote_todo
